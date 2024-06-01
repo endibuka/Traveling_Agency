@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "city")
-
 public class City {
 
     @Id
@@ -19,4 +18,5 @@ public class City {
     @JoinColumn(name = "country_id", nullable = false)
     private Continent continent;
 }
+
 

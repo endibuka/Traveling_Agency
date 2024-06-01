@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/api/signup").permitAll()
+                                .requestMatchers("/continent/**").permitAll()
                                 .anyRequest().authenticated()
                 );
         return http.build();

@@ -14,11 +14,13 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
 public class User {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @NotBlank(message = "First name is mandatory")
@@ -46,17 +48,6 @@ public class User {
     @NotBlank(message = "Gender is mandatory")
     private String gender;
 
-    public User(Long id, String firstName, String lastName, String nationality, String phoneNumber, LocalDate dateOfBirth, String gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nationality = nationality;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-    }
 
-    public User() {
 
-    }
 }

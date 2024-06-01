@@ -1,7 +1,7 @@
 package com.example.TravellingAgency.demo.service;
 
 import com.example.TravellingAgency.demo.entity.User;
-import com.example.TravellingAgency.demo.model.repositories.UserRepository;
+import com.example.TravellingAgency.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

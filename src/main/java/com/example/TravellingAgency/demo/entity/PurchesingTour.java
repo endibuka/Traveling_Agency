@@ -1,8 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
-import com.example.TravellingAgency.demo.model.repositories.UserRepository;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data

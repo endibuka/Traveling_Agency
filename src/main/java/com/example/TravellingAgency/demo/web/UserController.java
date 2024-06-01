@@ -1,7 +1,7 @@
 package com.example.TravellingAgency.demo.web;
 
-import com.example.TravellingAgency.demo.model.LoginRequest;
 import com.example.TravellingAgency.demo.entity.User;
+import com.example.TravellingAgency.demo.model.repositories.LoginRequest;
 import com.example.TravellingAgency.demo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +35,6 @@ public class UserController {
         } else {
             return ResponseEntity.status(401).body("Invalid email or password");
         }
+
     }
 }

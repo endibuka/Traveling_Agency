@@ -1,4 +1,4 @@
-package com.example.TravellingAgency.demo.security;
+package com.example.TravellingAgency.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

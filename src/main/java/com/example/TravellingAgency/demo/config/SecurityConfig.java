@@ -19,6 +19,9 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/api/signup").permitAll()
                                 .requestMatchers("/continent/**").permitAll()
+                                .requestMatchers("/api/cities/**").permitAll()
+                                .requestMatchers("/api/countries/**").permitAll()
+                                .requestMatchers("/api/hotels/**").permitAll()
                                 .anyRequest().authenticated()
                 );
         return http.build();

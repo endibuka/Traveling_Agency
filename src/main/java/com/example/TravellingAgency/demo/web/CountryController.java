@@ -12,7 +12,7 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
-    @PostMapping
+    @PostMapping("saveCountry")
     public Country saveCountry(@RequestBody Country country) {
         return countryService.save(country);
     }

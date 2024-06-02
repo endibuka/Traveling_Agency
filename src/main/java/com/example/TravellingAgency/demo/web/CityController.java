@@ -12,7 +12,7 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
-    @PostMapping
+    @PostMapping("/savecity")
     public City saveCity(@RequestBody City city) {
         return cityService.save(city);
     }

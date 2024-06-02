@@ -16,7 +16,8 @@ public class City {
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
-    private Continent continent;
+    private Country country;
+
 }
 
 

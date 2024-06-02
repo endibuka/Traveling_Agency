@@ -12,7 +12,7 @@ public class ContinentController {
     @Autowired
     private ContinentService continentService;
 
-    @PostMapping
+    @PostMapping("/addContinent")
     public Continent createContinent(@RequestBody Continent continent) {
         return continentService.createContinent(continent);
     }

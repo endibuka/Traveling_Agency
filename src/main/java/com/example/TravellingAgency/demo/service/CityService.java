@@ -1,7 +1,5 @@
 package com.example.TravellingAgency.demo.service;
 
-package com.example.TravellingAgency.demo.service;
-
 import com.example.TravellingAgency.demo.entity.City;
 import com.example.TravellingAgency.demo.repositories.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,3 +15,4 @@ public class CityService {
         return cityRepository.save(city);
     }
 }
+

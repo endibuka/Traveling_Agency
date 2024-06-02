@@ -1,4 +1,4 @@
-package com.example.TravellingAgency.demo.repositories;
+package com.example.TravellingAgency.demo.repository;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

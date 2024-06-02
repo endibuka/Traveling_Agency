@@ -12,11 +12,17 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hotel_id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "standard")
     private Float standard;
+
+    @Column(name = "description")
     private String description;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
-    private Hotel hotel;
-
+    private City city;
 }

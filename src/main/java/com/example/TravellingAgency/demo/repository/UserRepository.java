@@ -1,4 +1,4 @@
-package com.example.TravellingAgency.demo.repositories;
+package com.example.TravellingAgency.demo.repository;
 
 import com.example.TravellingAgency.demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

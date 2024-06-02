@@ -34,14 +34,16 @@ public class Tour {
     private LocalDate departureDate;
     private LocalDate dateOfReturn;
     private int numberOfDays;
-    private String type; // BB, HB, FB, AI
+
+    @Enumerated(EnumType.STRING)
+    private TourType type;
+
     private double priceForAdult;
     private double priceForChild;
     private boolean promoted;
     private int numberOfAdultSeats;
     private int numberOfPlacesForChildren;
 }
-
 
 
 

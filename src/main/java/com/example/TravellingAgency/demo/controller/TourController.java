@@ -1,5 +1,7 @@
 package com.example.TravellingAgency.demo.controller;
 
+import com.example.TravellingAgency.demo.entity.City;
+import com.example.TravellingAgency.demo.entity.PromotionStatus;
 import com.example.TravellingAgency.demo.entity.Tour;
 import com.example.TravellingAgency.demo.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,32 +34,44 @@ public class TourController {
     }
 
     @PostMapping
-    public Tour createTour(@RequestBody Tour tour) {
-        return tourService.save(tour);
+    public ResponseEntity<Tour> createTour(@RequestBody Tour tour) {
+        if (tour.getPromoted() == null) {
+            tour.setPromoted(PromotionStatus.NO);  // Set default if not provided
+        }
+        Tour savedTour = tourService.save(tour);
+        return ResponseEntity.ok(savedTour);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Tour> updateTour(@PathVariable int id, @RequestBody Tour tourDetails) {
-        Optional<Tour> tour = tourService.findById(id);
-        if (tour.isPresent()) {
-            Tour tourToUpdate = tour.get();
-            tourToUpdate.setFromCity(tourDetails.getFromCity());
-            tourToUpdate.setFromAirport(tourDetails.getFromAirport());
-            tourToUpdate.setToCity(tourDetails.getToCity());
-            tourToUpdate.setToAirport(tourDetails.getToAirport());
-            tourToUpdate.setDepartureDate(tourDetails.getDepartureDate());
-            tourToUpdate.setDateOfReturn(tourDetails.getDateOfReturn());
-            tourToUpdate.setNumberOfDays(tourDetails.getNumberOfDays());
-            tourToUpdate.setType(tourDetails.getType());
-            tourToUpdate.setPriceForAdult(tourDetails.getPriceForAdult());
-            tourToUpdate.setPriceForChild(tourDetails.getPriceForChild());
-            tourToUpdate.setPromoted(tourDetails.isPromoted());
-            tourToUpdate.setNumberOfAdultSeats(tourDetails.getNumberOfAdultSeats());
-            tourToUpdate.setNumberOfPlacesForChildren(tourDetails.getNumberOfPlacesForChildren());
-            Tour updatedTour = tourService.save(tourToUpdate);
+        return tourService.findById(id)
+                .map(existingTour -> {
+                    existingTour.setFromCity(tourDetails.getFromCity());
+                    existingTour.setFromAirport(tourDetails.getFromAirport());
+                    existingTour.setToCity(tourDetails.getToCity());
+                    existingTour.setToAirport(tourDetails.getToAirport());
+                    existingTour.setDepartureDate(tourDetails.getDepartureDate());
+                    existingTour.setDateOfReturn(tourDetails.getDateOfReturn());
+                    existingTour.setNumberOfDays(tourDetails.getNumberOfDays());
+                    existingTour.setType(tourDetails.getType());
+                    existingTour.setPriceForAdult(tourDetails.getPriceForAdult());
+                    existingTour.setPriceForChild(tourDetails.getPriceForChild());
+                    existingTour.setNumberOfAdultSeats(tourDetails.getNumberOfAdultSeats());
+                    existingTour.setNumberOfPlacesForChildren(tourDetails.getNumberOfPlacesForChildren());
+                    return ResponseEntity.ok(tourService.save(existingTour));
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}/promotion")
+    public ResponseEntity<?> updatePromotion(@PathVariable int id, @RequestParam PromotionStatus promotionStatus, @RequestParam(required = false) Double discountPercentage) {
+        try {
+            Tour updatedTour = tourService.updatePromotion(id, promotionStatus, discountPercentage);
             return ResponseEntity.ok(updatedTour);
-        } else {
-            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid parameters: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -66,4 +80,30 @@ public class TourController {
         tourService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<Tour>> filterTours(
+            @RequestParam(required = false) Long fromCityId,
+            @RequestParam(required = false) Long toCityId) {
+        List<Tour> tours;
+        if (fromCityId != null && toCityId != null) {
+            City fromCity = new City();
+            fromCity.setId(fromCityId);
+            City toCity = new City();
+            toCity.setId(toCityId);
+            tours = tourService.findByFromCityAndToCity(fromCity, toCity);
+        } else if (fromCityId != null) {
+            City fromCity = new City();
+            fromCity.setId(fromCityId);
+            tours = tourService.findByFromCity(fromCity);
+        } else if (toCityId != null) {
+            City toCity = new City();
+            toCity.setId(toCityId);
+            tours = tourService.findByToCity(toCity);
+        } else {
+            tours = tourService.findAll();
+        }
+        return ResponseEntity.ok(tours);
+    }
+
 }

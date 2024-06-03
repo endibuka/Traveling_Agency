@@ -18,7 +18,7 @@ public class PurchesingTour {
     private Tour tour;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "uzer_id")
+    private Uzer uzer;
 
 }

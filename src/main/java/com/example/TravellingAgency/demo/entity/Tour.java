@@ -2,7 +2,6 @@ package com.example.TravellingAgency.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data
@@ -38,12 +37,51 @@ public class Tour {
     @Enumerated(EnumType.STRING)
     private TourType type;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PromotionStatus promoted = PromotionStatus.NO;  // Default value
+
+    private double discountPercentage = 0.0;
+
     private double priceForAdult;
     private double priceForChild;
-    private boolean promoted;
+
+    @Column(name = "original_price_for_adult")
+    private double originalPriceForAdult;
+
+    @Column(name = "original_price_for_child")
+    private double originalPriceForChild;
+
     private int numberOfAdultSeats;
     private int numberOfPlacesForChildren;
+
+    public void setPromoted(PromotionStatus promoted) {
+        if (promoted == null) {
+            this.promoted = PromotionStatus.NO;  // Default to NO if null is provided
+        } else {
+            this.promoted = promoted;
+        }
+    }
+
+    public void setDiscountPercentage(double discountPercentage) {
+        if (discountPercentage < 0 || discountPercentage > 100) {
+            throw new IllegalArgumentException("Discount percentage must be between 0 and 100");
+        }
+        this.discountPercentage = discountPercentage;
+    }
+
+    // Ensure original prices are set when prices are initially set
+    public void setPriceForAdult(double priceForAdult) {
+        if (this.originalPriceForAdult == 0) {
+            this.originalPriceForAdult = priceForAdult;
+        }
+        this.priceForAdult = priceForAdult;
+    }
+
+    public void setPriceForChild(double priceForChild) {
+        if (this.originalPriceForChild == 0) {
+            this.originalPriceForChild = priceForChild;
+        }
+        this.priceForChild = priceForChild;
+    }
 }
-
-
-

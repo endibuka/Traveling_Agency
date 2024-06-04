@@ -1,5 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +19,6 @@ public class City {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
+    @JsonBackReference
     private Country country;
 }

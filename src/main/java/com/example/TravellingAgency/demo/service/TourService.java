@@ -16,4 +16,9 @@ public interface TourService {
     List<Tour> findByFromCity(City fromCity);
     List<Tour> findByToCity(City toCity);
     List<Tour> findByFromCityAndToCity(City fromCity, City toCity);
+    List<Tour> findAllByOrderByPriceForAdultAsc();
+    List<Tour> findAllByOrderByPriceForAdultDesc();
+    Double calculateTotalPrice(List<Integer> tourIds);
+
+
 }

@@ -44,16 +44,11 @@ public class Tour {
     private double discountPercentage = 0.0;
 
     private double priceForAdult;
-    private double priceForChild;
 
     @Column(name = "original_price_for_adult")
     private double originalPriceForAdult;
 
-    @Column(name = "original_price_for_child")
-    private double originalPriceForChild;
-
     private int numberOfAdultSeats;
-    private int numberOfPlacesForChildren;
 
     public void setPromoted(PromotionStatus promoted) {
         if (promoted == null) {
@@ -78,10 +73,4 @@ public class Tour {
         this.priceForAdult = priceForAdult;
     }
 
-    public void setPriceForChild(double priceForChild) {
-        if (this.originalPriceForChild == 0) {
-            this.originalPriceForChild = priceForChild;
-        }
-        this.priceForChild = priceForChild;
-    }
 }

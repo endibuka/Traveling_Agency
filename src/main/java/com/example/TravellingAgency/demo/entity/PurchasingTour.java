@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "purchesingTour")
-public class PurchesingTour {
+@Table(name = "purchasingTour")
+public class PurchasingTour {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchesingtour_id")
+    @Column(name = "purchasingtour_id")
     private Long id;
 
     @ManyToOne

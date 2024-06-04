@@ -1,48 +1,48 @@
 package com.example.TravellingAgency.demo.service.serviceimpl;
 
-import com.example.TravellingAgency.demo.entity.PurchesingTour;
-import com.example.TravellingAgency.demo.repository.PurchesingTourRepository;
-import com.example.TravellingAgency.demo.service.PurchesingTourService;
+import com.example.TravellingAgency.demo.entity.PurchasingTour;
+import com.example.TravellingAgency.demo.repository.PurchasingTourRepository;
+import com.example.TravellingAgency.demo.service.PurchasingTourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PurchesingTourServiceImpl implements PurchesingTourService {
+public class PurchesingTourServiceImpl implements PurchasingTourService {
 
     @Autowired
-    private PurchesingTourRepository purchesingTourRepository;
+    private PurchasingTourRepository purchasingTourRepository;
 
     @Override
-    public PurchesingTour createPurchesingTour(PurchesingTour purchesingTour) {
-        return purchesingTourRepository.save(purchesingTour);
+    public PurchasingTour createPurchasingTour(PurchasingTour purchasingTour) {
+        return purchasingTourRepository.save(purchasingTour);
     }
 
     @Override
-    public List<PurchesingTour> getAllPurchesingTours() {
-        return purchesingTourRepository.findAll();
+    public List<PurchasingTour> getAllPurchasingTours() {
+        return purchasingTourRepository.findAll();
     }
 
     @Override
-    public PurchesingTour getPurchesingTourById(Long id) {
-        return purchesingTourRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Purchesing Tour not found with id: " + id));
+    public PurchasingTour getPurchasingTourById(Long id) {
+        return purchasingTourRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Purchasing Tour not found with id: " + id));
     }
 
     @Override
-    public PurchesingTour updatePurchesingTour(Long id, PurchesingTour updatedPurchesingTour) {
-        PurchesingTour purchesingTour = purchesingTourRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Purchesing Tour not found with id: " + id));
-        // Update fields of the purchesingTour object with the fields of updatedPurchesingTour
+    public PurchasingTour updatePurchasingTour(Long id, PurchasingTour updatedPurchasingTour) {
+        PurchasingTour purchasingTour = purchasingTourRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Purchasing Tour not found with id: " + id));
+        // Update fields of the purchasingTour object with the fields of updatedPurchasingTour
         // Remember to handle each field according to your application's requirements
-        return purchesingTourRepository.save(purchesingTour);
+        return purchasingTourRepository.save(purchasingTour);
     }
 
     @Override
-    public void deletePurchesingTour(Long id) {
-        PurchesingTour purchesingTour = purchesingTourRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Purchesing Tour not found with id: " + id));
-        purchesingTourRepository.delete(purchesingTour);
+    public void deletePurchasingTour(Long id) {
+        PurchasingTour purchasingTour = purchasingTourRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Purchasing Tour not found with id: " + id));
+        purchasingTourRepository.delete(purchasingTour);
     }
 }

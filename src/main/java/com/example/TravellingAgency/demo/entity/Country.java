@@ -1,5 +1,7 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,8 +22,10 @@ public class Country {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "continent_id", nullable = false)
+    @JsonBackReference
     private Continent continent;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "country")
+    @JsonManagedReference
     private List<City> cities;
 }

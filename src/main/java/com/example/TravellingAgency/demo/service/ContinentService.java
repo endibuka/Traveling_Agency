@@ -1,20 +1,13 @@
 package com.example.TravellingAgency.demo.service;
 
 import com.example.TravellingAgency.demo.entity.Continent;
-import com.example.TravellingAgency.demo.entity.User;
-import com.example.TravellingAgency.demo.repositories.ContinentRepository;
-import org.hibernate.service.spi.InjectService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ContinentService {
+import java.util.List;
+import java.util.Optional;
 
-    @Autowired
-    private ContinentRepository continentRepository;
-
-    public Continent createContinent(Continent continent){
-        return continentRepository.save(continent);
-    }
-
+public interface ContinentService {
+    List<Continent> findAll();
+    Optional<Continent> findById(Long id);
+    Continent save(Continent continent);
+    void deleteById(Long id);
 }

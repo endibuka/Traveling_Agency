@@ -1,5 +1,7 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,9 +16,11 @@ public class Continent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "continent_id")
     private Long id;
+
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "continent")
-    private List <Country> countries;
 
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "continent")
+    private List<Country> countries;
 }

@@ -1,17 +1,13 @@
 package com.example.TravellingAgency.demo.service;
 
 import com.example.TravellingAgency.demo.entity.Country;
-import com.example.TravellingAgency.demo.repositories.CountryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class CountryService {
-    @Autowired
-    private CountryRepository countryRepository;
+import java.util.List;
+import java.util.Optional;
 
-    public Country save(Country country) {
-        return countryRepository.save(country);
-    }
+public interface CountryService {
+    List<Country> findAll();
+    Optional<Country> findById(Long id);
+    Country save(Country country);
+    void deleteById(Long id);
 }
-

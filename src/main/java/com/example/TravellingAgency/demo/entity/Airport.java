@@ -1,7 +1,7 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
@@ -13,8 +13,15 @@ public class Airport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "airport_id")
     private long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "code")
+    private String code;
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
-    private Airport airport;
-
+    private City city;
 }

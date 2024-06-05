@@ -1,8 +1,8 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data
@@ -15,18 +15,22 @@ public class Tour {
     @Column(name = "tour_id")
     private int id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "from_city_id")
     private City fromCity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "from_airport_id")
     private Airport fromAirport;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "to_city_id")
     private City toCity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "to_airport_id")
     private Airport toAirport;
@@ -34,14 +38,44 @@ public class Tour {
     private LocalDate departureDate;
     private LocalDate dateOfReturn;
     private int numberOfDays;
-    private String type; // BB, HB, FB, AI
+
+    @Enumerated(EnumType.STRING)
+    private TourType type;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PromotionStatus promoted = PromotionStatus.NO;  // Default value
+
+    private double discountPercentage = 0.0;
+
     private double priceForAdult;
-    private double priceForChild;
-    private boolean promoted;
+
+    @Column(name = "original_price_for_adult")
+    private double originalPriceForAdult;
+
     private int numberOfAdultSeats;
-    private int numberOfPlacesForChildren;
+
+    public void setPromoted(PromotionStatus promoted) {
+        if (promoted == null) {
+            this.promoted = PromotionStatus.NO;  // Default to NO if null is provided
+        } else {
+            this.promoted = promoted;
+        }
+    }
+
+    public void setDiscountPercentage(double discountPercentage) {
+        if (discountPercentage < 0 || discountPercentage > 100) {
+            throw new IllegalArgumentException("Discount percentage must be between 0 and 100");
+        }
+        this.discountPercentage = discountPercentage;
+    }
+
+    // Ensure original prices are set when prices are initially set
+    public void setPriceForAdult(double priceForAdult) {
+        if (this.originalPriceForAdult == 0) {
+            this.originalPriceForAdult = priceForAdult;
+        }
+        this.priceForAdult = priceForAdult;
+    }
+
 }
-
-
-
-

@@ -1,18 +1,14 @@
 package com.example.TravellingAgency.demo.service;
 
 import com.example.TravellingAgency.demo.entity.Hotel;
-import com.example.TravellingAgency.demo.repositories.HotelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class HotelService {
+import java.util.List;
+import java.util.Optional;
 
-    @Autowired
-    private HotelRepository hotelRepository;
-
-    public Hotel save(Hotel hotel) {
-        return hotelRepository.save(hotel);
-    }
+public interface HotelService {
+    List<Hotel> findAll();
+    Optional<Hotel> findById(Long id);
+    Hotel save(Hotel hotel);
+    void deleteById(Long id);
+    List<Hotel> findByCityIdIn(List<Long> cityIds);
 }
-

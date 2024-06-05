@@ -1,17 +1,15 @@
+package com.example.TravellingAgency.demo.service;
 
 import com.example.TravellingAgency.demo.entity.City;
-import com.example.TravellingAgency.demo.repositories.CityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.TravellingAgency.demo.entity.Hotel;
 
-@Service
-public class CityService {
+import java.util.List;
+import java.util.Optional;
 
-    @Autowired
-    private CityRepository cityRepository;
-
-    public City save(City city) {
-        return cityRepository.save(city);
-    }
+public interface CityService {
+    List<City> findAll();
+    Optional<City> findById(Long id);
+    City save(City city);
+    void deleteById(Long id);
+    List<City> findByCountryIdIn(List<Long> countryIds);
 }
-

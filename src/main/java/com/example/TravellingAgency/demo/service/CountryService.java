@@ -11,6 +11,6 @@ public interface CountryService {
     Optional<Country> findById(Long id);
     Country save(Country country);
     void deleteById(Long id);
-    public List<City> findByCountryIds(List<Long> countryIds);
+    List<City> findByCountryIds(List<Long> countryIds);
     List<Country> findByContinentIds(List<Long> continentIds);
 }

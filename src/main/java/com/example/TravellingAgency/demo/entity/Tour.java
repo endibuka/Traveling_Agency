@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -56,11 +57,7 @@ public class Tour {
     private int numberOfSeats;
 
     public void setPromoted(PromotionStatus promoted) {
-        if (promoted == null) {
-            this.promoted = PromotionStatus.NO;  // Default to NO if null is provided
-        } else {
-            this.promoted = promoted;
-        }
+        this.promoted = Objects.requireNonNullElse(promoted, PromotionStatus.NO);
     }
 
     public void setDiscountPercentage(double discountPercentage) {

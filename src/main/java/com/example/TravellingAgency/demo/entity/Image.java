@@ -7,10 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -26,12 +23,9 @@ public class Image {
     private String fileName;
     private String originalFileName;
 
+    @Getter
     @Transient
     private String url;
-
-    public String getUrl () {
-        return url;
-    }
 
     public void setUrl (String baseUrl) {
         this.url = baseUrl + fileName;

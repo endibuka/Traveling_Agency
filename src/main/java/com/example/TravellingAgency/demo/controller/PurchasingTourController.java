@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/purchesingTours")
-public class PurchesingTourController {
+@RequestMapping("/purchasingTours")
+public class PurchasingTourController {
 
     @Autowired
     private PurchasingTourService purchasingTourService;

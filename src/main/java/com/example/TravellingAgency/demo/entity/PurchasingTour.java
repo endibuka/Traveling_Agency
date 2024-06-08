@@ -11,7 +11,7 @@ public class PurchasingTour {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchasingtour_id")
+    @Column(name = "purchasing_tour_id")
     private Long id;
 
     @JsonIgnore

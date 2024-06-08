@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PurchesingTourServiceImpl implements PurchasingTourService {
+public class PurchasingTourServiceImpl implements PurchasingTourService {
 
     @Autowired
     private PurchasingTourRepository purchasingTourRepository;

@@ -105,7 +105,7 @@ public class TourController {
     }
     @GetMapping("/sorted-by-price")
     public List<Tour> getToursSortedByPrice(@RequestParam double priceOfTour) {
-        return tourService.findAllByOrderByPriceAsc(priceOfTour);
+        return tourService.findAllByOrderByPriceOfTourAsc(priceOfTour);
     }
     @GetMapping("/sorted-by-price-desc")
     public List<Tour> getToursSortedByPriceDesc(@RequestParam double priceOfTour) {

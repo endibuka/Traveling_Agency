@@ -15,6 +15,6 @@ public interface TourRepository extends JpaRepository<Tour, Integer> {
     List<Tour> findByFromCity(City fromCity);
     List<Tour> findByToCity(City toCity);
     List<Tour> findByFromCityAndToCity(City fromCity, City toCity);
-    List<Tour> findAllByOrderByPriceAsc();
-    List<Tour> findAllByOrderByPriceDesc();
+    List<Tour> findAllByOrderByPriceAsc(double priceOfTour);
+    List<Tour> findAllByOrderByPriceDesc(double priceOfTour);
 }

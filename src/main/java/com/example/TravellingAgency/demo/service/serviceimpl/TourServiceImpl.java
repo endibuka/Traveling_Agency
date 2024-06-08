@@ -79,12 +79,12 @@ public class TourServiceImpl implements TourService {
         return tourRepository.findByFromCityAndToCity(fromCity, toCity);
     }
     @Override
-    public List<Tour> findAllByOrderByPriceAsc() {
-        return tourRepository.findAllByOrderByPriceAsc();
+    public List<Tour> findAllByOrderByPriceAsc(double priceOfTour) {
+        return tourRepository.findAllByOrderByPriceAsc(priceOfTour);
     }
     @Override
-    public List<Tour> findAllByOrderByPriceDesc() {
-        return tourRepository.findAllByOrderByPriceDesc();
+    public List<Tour> findAllByOrderByPriceDesc(double priceOfTour) {
+        return tourRepository.findAllByOrderByPriceDesc(priceOfTour);
     }
     @Override
     public Double calculateTotalPrice(List<Integer> tourIds) {

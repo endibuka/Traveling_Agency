@@ -77,5 +77,7 @@ public class Tour {
         }
         this.priceOfTour = priceOfTour;
     }
-
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private Image image;
 }

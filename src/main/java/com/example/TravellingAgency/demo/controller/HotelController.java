@@ -1,6 +1,8 @@
 package com.example.TravellingAgency.demo.controller;
 
+import com.example.TravellingAgency.demo.entity.City;
 import com.example.TravellingAgency.demo.entity.Hotel;
+import com.example.TravellingAgency.demo.service.CityService;
 import com.example.TravellingAgency.demo.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ public class HotelController {
 
     @Autowired
     private HotelService hotelService;
+    @Autowired
+    private CityService cityService;
 
     @GetMapping
     public List<Hotel> getAllHotels() {
@@ -56,5 +60,9 @@ public class HotelController {
     public ResponseEntity<Void> deleteHotel(@PathVariable Long id) {
         hotelService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/Hotels")
+    public List<Hotel> getHtelsByCityIds(@RequestParam List<Long> cityIds) {
+        return hotelService.findByCityIdIn(cityIds);
     }
 }

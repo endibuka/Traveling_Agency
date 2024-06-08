@@ -54,10 +54,8 @@ public class TourController {
                     existingTour.setDateOfReturn(tourDetails.getDateOfReturn());
                     existingTour.setNumberOfDays(tourDetails.getNumberOfDays());
                     existingTour.setType(tourDetails.getType());
-                    existingTour.setPriceForAdult(tourDetails.getPriceForAdult());
-                    existingTour.setPriceForChild(tourDetails.getPriceForChild());
-                    existingTour.setNumberOfAdultSeats(tourDetails.getNumberOfAdultSeats());
-                    existingTour.setNumberOfPlacesForChildren(tourDetails.getNumberOfPlacesForChildren());
+                    existingTour.setPriceOfTour(tourDetails.getPriceOfTour());
+                    existingTour.setNumberOfSeats(tourDetails.getNumberOfSeats());
                     return ResponseEntity.ok(tourService.save(existingTour));
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -104,6 +102,19 @@ public class TourController {
             tours = tourService.findAll();
         }
         return ResponseEntity.ok(tours);
+    }
+    @GetMapping("/sorted-by-price")
+    public List<Tour> getToursSortedByPrice(@RequestParam double priceOfTour) {
+        return tourService.findAllByOrderByPriceAsc(priceOfTour);
+    }
+    @GetMapping("/sorted-by-price-desc")
+    public List<Tour> getToursSortedByPriceDesc(@RequestParam double priceOfTour) {
+        return tourService.findAllByOrderByPriceDesc(priceOfTour);
+    }
+
+    @PostMapping("/total-price")
+    public double calculateTotalPrice(@RequestBody List<Integer> tourIds) {
+        return tourService.calculateTotalPrice(tourIds);
     }
 
 }

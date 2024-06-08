@@ -1,7 +1,9 @@
 package com.example.TravellingAgency.demo.controller;
 
 import com.example.TravellingAgency.demo.entity.Continent;
+import com.example.TravellingAgency.demo.entity.Country;
 import com.example.TravellingAgency.demo.service.ContinentService;
+import com.example.TravellingAgency.demo.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ public class ContinentController {
 
     @Autowired
     private ContinentService continentService;
+    @Autowired
+    private CountryService countryService;
 
     @GetMapping
     public List<Continent> getAllContinents() {
@@ -54,5 +58,10 @@ public class ContinentController {
     public ResponseEntity<Void> deleteContinent(@PathVariable Long id) {
         continentService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/byContinents")
+    public List<Country> getCountriesByContinentIds(@RequestParam List<Long> continentIds) {
+        return countryService.findByContinentIds(continentIds);
     }
 }

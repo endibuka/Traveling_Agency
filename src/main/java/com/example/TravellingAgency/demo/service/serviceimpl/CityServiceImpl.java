@@ -34,4 +34,9 @@ public class CityServiceImpl implements CityService {
     public void deleteById(Long id) {
         cityRepository.deleteById(id);
     }
+
+    @Override
+    public List<City> findByCountryIdIn(List<Long> countryIds) {
+        return cityRepository.findByCountryIdIn(countryIds);
+    }
 }

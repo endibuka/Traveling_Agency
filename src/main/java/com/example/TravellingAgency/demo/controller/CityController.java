@@ -55,4 +55,8 @@ public class CityController {
         cityService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/Cities")
+    public List<City> getCitiesByCountryIds(@RequestParam List<Long> countryIds) {
+        return cityService.findByCountryIdIn(countryIds);
+    }
 }

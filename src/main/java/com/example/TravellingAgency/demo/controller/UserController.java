@@ -1,7 +1,7 @@
 //package com.example.TravellingAgency.demo.controller;
 //
 //import com.example.TravellingAgency.demo.entity.User;
-//import com.example.TravellingAgency.demo.repository.LoginRequest;
+//import com.example.TravellingAgency.demo.config.LoginRequest;
 //import com.example.TravellingAgency.demo.service.UserService;
 //import jakarta.validation.Valid;
 //import org.springframework.beans.factory.annotation.Autowired;

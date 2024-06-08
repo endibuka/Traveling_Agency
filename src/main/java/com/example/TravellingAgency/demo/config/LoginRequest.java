@@ -1,4 +1,4 @@
-package com.example.TravellingAgency.demo.repository;
+package com.example.TravellingAgency.demo.config;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ public class LoginRequest {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    // Getters and Setters
+
 
     public String getEmail() {
         return email;

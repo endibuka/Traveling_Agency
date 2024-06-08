@@ -10,4 +10,5 @@ public interface HotelService {
     Optional<Hotel> findById(Long id);
     Hotel save(Hotel hotel);
     void deleteById(Long id);
+    List<Hotel> findByCityIdIn(List<Long> cityIds);
 }

@@ -34,4 +34,9 @@ public class HotelServiceImpl implements HotelService {
     public void deleteById(Long id) {
         hotelRepository.deleteById(id);
     }
+
+    @Override
+    public List<Hotel> findByCityIdIn(List<Long> cityIds) {
+        return hotelRepository.findByCityIdIn(cityIds);
+    }
 }

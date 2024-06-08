@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "uzers")
+@Table(name = "public_users")
 @AllArgsConstructor
 public class Uzer {
 

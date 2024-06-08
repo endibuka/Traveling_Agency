@@ -28,8 +28,7 @@ public class PromotionScheduler {
                 tour.setPromoted(PromotionStatus.NO);
                 tour.setDiscountPercentage(0.0);
                 // Reset the prices to the original values
-                tour.setPriceForAdult(tour.getOriginalPriceForAdult());
-                tour.setPriceForChild(tour.getOriginalPriceForChild());
+                tour.setPriceOfTour(tour.getOriginalPriceOfTour());
                 tourRepository.save(tour);
             }
         }

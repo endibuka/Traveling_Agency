@@ -1,5 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -14,18 +15,22 @@ public class Tour {
     @Column(name = "tour_id")
     private int id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "from_city_id")
     private City fromCity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "from_airport_id")
     private Airport fromAirport;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "to_city_id")
     private City toCity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "to_airport_id")
     private Airport toAirport;
@@ -43,17 +48,12 @@ public class Tour {
 
     private double discountPercentage = 0.0;
 
-    private double priceForAdult;
-    private double priceForChild;
+    private double priceOfTour;
 
-    @Column(name = "original_price_for_adult")
-    private double originalPriceForAdult;
+    @Column(name = "original_price_of_tour")
+    private double originalPriceOfTour;
 
-    @Column(name = "original_price_for_child")
-    private double originalPriceForChild;
-
-    private int numberOfAdultSeats;
-    private int numberOfPlacesForChildren;
+    private int numberOfSeats;
 
     public void setPromoted(PromotionStatus promoted) {
         if (promoted == null) {
@@ -71,17 +71,13 @@ public class Tour {
     }
 
     // Ensure original prices are set when prices are initially set
-    public void setPriceForAdult(double priceForAdult) {
-        if (this.originalPriceForAdult == 0) {
-            this.originalPriceForAdult = priceForAdult;
+    public void setPriceOfTour(double priceOfTour) {
+        if (this.originalPriceOfTour == 0) {
+            this.originalPriceOfTour = priceOfTour;
         }
-        this.priceForAdult = priceForAdult;
+        this.priceOfTour = priceOfTour;
     }
-
-    public void setPriceForChild(double priceForChild) {
-        if (this.originalPriceForChild == 0) {
-            this.originalPriceForChild = priceForChild;
-        }
-        this.priceForChild = priceForChild;
-    }
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private Image image;
 }

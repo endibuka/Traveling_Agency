@@ -10,8 +10,11 @@ import java.util.List;
 
 @Repository
 public interface TourRepository extends JpaRepository<Tour, Integer> {
+
     List<Tour> findByDepartureDate(LocalDate departureDate);
     List<Tour> findByFromCity(City fromCity);
     List<Tour> findByToCity(City toCity);
     List<Tour> findByFromCityAndToCity(City fromCity, City toCity);
+    List<Tour> findAllByOrderByPriceAsc(double priceOfTour);
+    List<Tour> findAllByOrderByPriceDesc(double priceOfTour);
 }

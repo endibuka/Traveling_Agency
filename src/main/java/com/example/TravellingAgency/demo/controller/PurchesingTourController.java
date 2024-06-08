@@ -1,7 +1,7 @@
 package com.example.TravellingAgency.demo.controller;
 
-import com.example.TravellingAgency.demo.entity.PurchesingTour;
-import com.example.TravellingAgency.demo.service.PurchesingTourService;
+import com.example.TravellingAgency.demo.entity.PurchasingTour;
+import com.example.TravellingAgency.demo.service.PurchasingTourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,36 +12,36 @@ import java.util.List;
 public class PurchesingTourController {
 
     @Autowired
-    private PurchesingTourService purchesingTourService;
+    private PurchasingTourService purchasingTourService;
 
     // Create
     @PostMapping
-    public PurchesingTour createPurchesingTour(@RequestBody PurchesingTour purchesingTour) {
-        return purchesingTourService.createPurchesingTour(purchesingTour);
+    public PurchasingTour createPurchasingTour(@RequestBody PurchasingTour purchasingTour) {
+        return purchasingTourService.createPurchasingTour(purchasingTour);
     }
 
     // Read all
     @GetMapping
-    public List<PurchesingTour> getAllPurchesingTours() {
-        return purchesingTourService.getAllPurchesingTours();
+    public List<PurchasingTour> getAllPurchasingTours() {
+        return purchasingTourService.getAllPurchasingTours();
     }
 
     // Read by id
     @GetMapping("/{id}")
-    public PurchesingTour getPurchesingTourById(@PathVariable Long id) {
-        return purchesingTourService.getPurchesingTourById(id);
+    public PurchasingTour getPurchasingTourById(@PathVariable Long id) {
+        return purchasingTourService.getPurchasingTourById(id);
     }
 
     // Update
     @PutMapping("/{id}")
-    public PurchesingTour updatePurchesingTour(@PathVariable Long id, @RequestBody PurchesingTour updatedPurchesingTour) {
-        return purchesingTourService.updatePurchesingTour(id, updatedPurchesingTour);
+    public PurchasingTour updatePurchasingTour(@PathVariable Long id, @RequestBody PurchasingTour updatedPurchasingTour) {
+        return purchasingTourService.updatePurchasingTour(id, updatedPurchasingTour);
     }
 
     // Delete
     @DeleteMapping("/{id}")
-    public String deletePurchesingTour(@PathVariable Long id) {
-        purchesingTourService.deletePurchesingTour(id);
-        return "Purchesing Tour deleted successfully";
+    public String deletePurchasingTour(@PathVariable Long id) {
+        purchasingTourService.deletePurchasingTour(id);
+        return "Purchasing Tour deleted successfully";
     }
 }

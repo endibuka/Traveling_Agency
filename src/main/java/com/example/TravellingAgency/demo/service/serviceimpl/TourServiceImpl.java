@@ -53,12 +53,12 @@ public class TourServiceImpl implements TourService {
 
             // Apply the discount to the prices
             double discountFactor = 1 - (discountPercentage / 100.0);
-            tour.setPriceForAdult(tour.getOriginalPriceForAdult() * discountFactor);
+            tour.setPriceOfTour(tour.getOriginalPriceOfTour() * discountFactor);
 
         } else {
             // If not promoted, reset the discount percentage to 0 and restore original prices
             tour.setDiscountPercentage(0.0);
-            tour.setPriceForAdult(tour.getOriginalPriceForAdult());
+            tour.setPriceOfTour(tour.getOriginalPriceOfTour());
         }
 
         return tourRepository.save(tour);
@@ -79,16 +79,16 @@ public class TourServiceImpl implements TourService {
         return tourRepository.findByFromCityAndToCity(fromCity, toCity);
     }
     @Override
-    public List<Tour> findAllByOrderByPriceForAdultAsc() {
-        return tourRepository.findAllByOrderByPriceForAdultAsc();
+    public List<Tour> findAllByOrderByPriceAsc() {
+        return tourRepository.findAllByOrderByPriceAsc();
     }
     @Override
-    public List<Tour> findAllByOrderByPriceForAdultDesc() {
-        return tourRepository.findAllByOrderByPriceForAdultDesc();
+    public List<Tour> findAllByOrderByPriceDesc() {
+        return tourRepository.findAllByOrderByPriceDesc();
     }
     @Override
     public Double calculateTotalPrice(List<Integer> tourIds) {
         List<Tour> tours = tourRepository.findAllById(tourIds);
-        return tours.stream().mapToDouble(Tour::getPriceForAdult).sum();
+        return tours.stream().mapToDouble(Tour::getPriceOfTour).sum();
     }
 }

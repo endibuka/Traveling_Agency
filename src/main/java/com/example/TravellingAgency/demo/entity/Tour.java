@@ -48,12 +48,12 @@ public class Tour {
 
     private double discountPercentage = 0.0;
 
-    private double priceForAdult;
+    private double priceOfTour;
 
-    @Column(name = "original_price_for_adult")
-    private double originalPriceForAdult;
+    @Column(name = "original_price_of_tour")
+    private double originalPriceOfTour;
 
-    private int numberOfAdultSeats;
+    private int numberOfSeats;
 
     public void setPromoted(PromotionStatus promoted) {
         if (promoted == null) {
@@ -71,11 +71,11 @@ public class Tour {
     }
 
     // Ensure original prices are set when prices are initially set
-    public void setPriceForAdult(double priceForAdult) {
-        if (this.originalPriceForAdult == 0) {
-            this.originalPriceForAdult = priceForAdult;
+    public void setPriceOfTour(double priceOfTour) {
+        if (this.originalPriceOfTour == 0) {
+            this.originalPriceOfTour = priceOfTour;
         }
-        this.priceForAdult = priceForAdult;
+        this.priceOfTour = priceOfTour;
     }
 
 }

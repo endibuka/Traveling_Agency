@@ -54,8 +54,8 @@ public class TourController {
                     existingTour.setDateOfReturn(tourDetails.getDateOfReturn());
                     existingTour.setNumberOfDays(tourDetails.getNumberOfDays());
                     existingTour.setType(tourDetails.getType());
-                    existingTour.setPriceForAdult(tourDetails.getPriceForAdult());
-                    existingTour.setNumberOfAdultSeats(tourDetails.getNumberOfAdultSeats());
+                    existingTour.setPriceOfTour(tourDetails.getPriceOfTour());
+                    existingTour.setNumberOfSeats(tourDetails.getNumberOfSeats());
                     return ResponseEntity.ok(tourService.save(existingTour));
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -105,11 +105,11 @@ public class TourController {
     }
     @GetMapping("/sorted-by-price")
     public List<Tour> getToursSortedByPrice() {
-        return tourService.findAllByOrderByPriceForAdultAsc();
+        return tourService.findAllByOrderByPriceAsc();
     }
     @GetMapping("/sorted-by-price-desc")
     public List<Tour> getToursSortedByPriceDesc() {
-        return tourService.findAllByOrderByPriceForAdultDesc();
+        return tourService.findAllByOrderByPriceDesc();
     }
 
     @PostMapping("/total-price")

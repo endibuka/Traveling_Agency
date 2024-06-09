@@ -16,11 +16,11 @@ public interface TourService {
     List<Tour> findByFromCity(City fromCity);
     List<Tour> findByToCity(City toCity);
     List<Tour> findByFromCityAndToCity(City fromCity, City toCity);
-    List<Tour> findAllByOrderByPriceOfTourAsc(double priceOfTour);
+//    List<Tour> findAllByOrderByPriceOfTourAsc(double priceOfTour);
 
-    List<Tour> findAllByOrderByPriceOfTourDesc(double priceOfTour);
+//    List<Tour> findAllByOrderByPriceOfTourDesc(double priceOfTour);
 
-    List<Tour> findAllByOrderByPriceDesc(double priceOfTour);
+//    List<Tour> findAllByOrderByPriceDesc(double priceOfTour);
 
     Double calculateTotalPrice(List<Integer> tourIds);
 

@@ -103,14 +103,14 @@ public class TourController {
         }
         return ResponseEntity.ok(tours);
     }
-    @GetMapping("/sorted-by-price")
-    public List<Tour> getToursSortedByPrice(@RequestParam double priceOfTour) {
-        return tourService.findAllByOrderByPriceOfTourAsc(priceOfTour);
-    }
-    @GetMapping("/sorted-by-price-desc")
-    public List<Tour> getToursSortedByPriceDesc(@RequestParam double priceOfTour) {
-        return tourService.findAllByOrderByPriceDesc(priceOfTour);
-    }
+//    @GetMapping("/sorted-by-price")
+//    public List<Tour> getToursSortedByPrice(@RequestParam double priceOfTour) {
+//        return tourService.findAllByOrderByPriceOfTourAsc(priceOfTour);
+//    }
+//    @GetMapping("/sorted-by-price-desc")
+//    public List<Tour> getToursSortedByPriceDesc(@RequestParam double priceOfTour) {
+//        return tourService.findAllByOrderByPriceDesc(priceOfTour);
+//    }
 
     @PostMapping("/total-price")
     public double calculateTotalPrice(@RequestBody List<Integer> tourIds) {

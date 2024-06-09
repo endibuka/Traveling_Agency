@@ -18,7 +18,7 @@ public class TourController {
     @Autowired
     private TourService tourService;
 
-    @GetMapping
+    @GetMapping("/getAllTours")
     public List<Tour> getAllTours() {
         return tourService.findAll();
     }

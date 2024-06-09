@@ -32,10 +32,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
         if (userOptional.isPresent()) {
-            return ResponseEntity.ok(userOptional.get()); // Returning user details on successful login
+            return ResponseEntity.ok("User logged in successfully");
         } else {
             return ResponseEntity.status(401).body("Invalid email or password");
         }

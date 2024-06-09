@@ -16,6 +16,10 @@ public class Tour {
     @Column(name = "tour_id")
     private int id;
 
+    private String name;
+
+    private String imgURL;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "from_city_id")

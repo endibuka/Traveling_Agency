@@ -21,5 +21,26 @@
       <user-name>postgres</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="postgres@localhost [2]" uuid="6227d8f3-5e59-4acb-80a9-24354bf555e8">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>endibuka1</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="endibuka1@localhost [2]" uuid="5ab51a39-ed7f-4cc6-b323-5c4fc694b5ef">
+      <database-info product="PostgreSQL" version="16.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.6">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

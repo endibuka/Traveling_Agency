@@ -43,6 +43,7 @@ public class Tour {
     private LocalDate departureDate;
     private LocalDate dateOfReturn;
     private int numberOfDays;
+    private String cityCountry;
 
     @Enumerated(EnumType.STRING)
     private TourType type;

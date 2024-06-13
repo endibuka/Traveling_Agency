@@ -17,7 +17,6 @@ public class City {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;

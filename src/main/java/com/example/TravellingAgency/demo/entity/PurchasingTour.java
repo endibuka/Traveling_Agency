@@ -14,12 +14,10 @@ public class PurchasingTour {
     @Column(name = "purchasing_tour_id")
     private Long id;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tour_id")
     private Tour tour;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "uzer_id")
     private User user;

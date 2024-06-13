@@ -29,6 +29,8 @@ public class SecurityConfig {
                                 .requestMatchers("/api/users/{ID}").permitAll()
                                 .requestMatchers("/users/email/**").permitAll()
                                 .requestMatchers("/api/users/{email}").permitAll()
+                                .requestMatchers("/purchasingTours/**").permitAll()
+
 
 
 

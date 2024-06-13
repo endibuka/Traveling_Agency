@@ -17,9 +17,9 @@ public class PurchasingTourController {
     // Create
     @PostMapping
     public PurchasingTour createPurchasingTour(@RequestBody PurchasingTour purchasingTour) {
+        System.out.println("Received purchasingTour: " + purchasingTour);
         return purchasingTourService.createPurchasingTour(purchasingTour);
     }
-
     // Read all
     @GetMapping
     public List<PurchasingTour> getAllPurchasingTours() {

@@ -22,6 +22,6 @@ public class PurchasingTour {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "uzer_id")
-    private Uzer uzer;
+    private User user;
 
 }

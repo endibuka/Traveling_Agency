@@ -24,6 +24,16 @@ public class SecurityConfig {
                                 .requestMatchers("/api/countries/**").permitAll()
                                 .requestMatchers("/api/hotels/**").permitAll()
                                 .requestMatchers("/api/tours/**").permitAll()
+                                .requestMatchers("/api/users/**").permitAll()
+                                .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("/api/users/{ID}").permitAll()
+                                .requestMatchers("/users/email/**").permitAll()
+                                .requestMatchers("/api/users/{email}").permitAll()
+
+
+
+
+
                                 .anyRequest().authenticated()
                 );
         return http.build();

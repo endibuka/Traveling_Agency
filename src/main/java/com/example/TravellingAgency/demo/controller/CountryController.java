@@ -36,7 +36,7 @@ public class CountryController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/postCoutry")
     public Country createCountry(@RequestBody Country country) {
         return countryService.save(country);
     }

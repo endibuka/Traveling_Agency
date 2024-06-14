@@ -18,14 +18,22 @@ public class CityController {
 
     @GetMapping
     public List<City> getAllCities() {
-        return cityService.findAll();
+        List<City> cities = cityService.findAll();
+        cities.forEach(city -> {
+            city.getCountry().getName();  // Ensure lazy loading
+            city.getCountry().getContinent().getName();  // Ensure lazy loading
+        });
+        return cities;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCityById(@PathVariable Long id) {
         Optional<City> city = cityService.findById(id);
         if (city.isPresent()) {
-            return ResponseEntity.ok(city.get());
+            City foundCity = city.get();
+            foundCity.getCountry().getName();  // Ensure lazy loading
+            foundCity.getCountry().getContinent().getName();  // Ensure lazy loading
+            return ResponseEntity.ok(foundCity);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -55,8 +63,14 @@ public class CityController {
         cityService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/Cities")
+
+    @GetMapping("/byCountries")
     public List<City> getCitiesByCountryIds(@RequestParam List<Long> countryIds) {
-        return cityService.findByCountryIdIn(countryIds);
+        List<City> cities = cityService.findByCountryIdIn(countryIds);
+        cities.forEach(city -> {
+            city.getCountry().getName();  // Ensure lazy loading
+            city.getCountry().getContinent().getName();  // Ensure lazy loading
+        });
+        return cities;
     }
 }

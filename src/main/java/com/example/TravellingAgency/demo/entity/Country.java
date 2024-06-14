@@ -1,7 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,12 +19,12 @@ public class Country {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "continent_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "countries"})
     private Continent continent;
 
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "country")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "country")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "country"})
     private List<City> cities;
 }

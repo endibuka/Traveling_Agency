@@ -1,6 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class Continent {
     @Column(name = "name")
     private String name;
 
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "continent")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "continent")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "continent"})
     private List<Country> countries;
 }

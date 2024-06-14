@@ -1,6 +1,6 @@
 package com.example.TravellingAgency.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +20,8 @@ public class Airport {
     @Column(name = "code")
     private String code;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "airports"})
     private City city;
 }

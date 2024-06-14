@@ -1,8 +1,9 @@
 package com.example.TravellingAgency.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -17,27 +18,26 @@ public class Tour {
     private int id;
 
     private String name;
-
     private String imgURL;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_city_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private City fromCity;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_airport_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Airport fromAirport;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_city_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private City toCity;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_airport_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Airport toAirport;
 
     private LocalDate departureDate;
@@ -53,7 +53,6 @@ public class Tour {
     private PromotionStatus promoted = PromotionStatus.NO;  // Default value
 
     private double discountPercentage = 0.0;
-
     private double priceOfTour;
 
     @Column(name = "original_price_of_tour")
@@ -79,6 +78,7 @@ public class Tour {
         }
         this.priceOfTour = priceOfTour;
     }
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image image;

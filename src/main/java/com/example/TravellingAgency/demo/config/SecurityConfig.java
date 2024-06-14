@@ -14,35 +14,33 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/api/signup").permitAll()
-                                .requestMatchers("/api/login").permitAll()
-                                .requestMatchers("/continent/**").permitAll()
-                                .requestMatchers("/api/cities/**").permitAll()
-                                .requestMatchers("/api/countries/**").permitAll()
-                                .requestMatchers("/api/hotels/**").permitAll()
-                                .requestMatchers("/api/tours/**").permitAll()
-                                .requestMatchers("/api/users/**").permitAll()
-                                .requestMatchers("/api/**").permitAll()
-                                .requestMatchers("/api/users/{ID}").permitAll()
-                                .requestMatchers("/users/email/**").permitAll()
-                                .requestMatchers("/api/users/{email}").permitAll()
-                                .requestMatchers("/purchasingTours/**").permitAll()
+        http
+                .csrf().disable() // Disable CSRF for API endpoints
+                .cors().and() // Enable CORS if needed globally
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/api/**", // Permit all requests under the API context
+                                "/continent/**", // Specific patterns related to legacy API routes
+                                "/purchasingTours/**",// Specific patterns for purchasing tours
+                                "/api/tours",
+                                "/api/image",
+                                "/api/hotels",
+                                "/api/countries",
+                                "/api/continents",
+                                "/api/cities",
+                                "/api/airports",
+                                "/api/countries/postCoutry"
 
+                        ).permitAll() // Permit all requests to these patterns
+                        .anyRequest().authenticated() // All other requests require authentication
+                )
+                .httpBasic(); // If using HTTP Basic authentication, otherwise configure as needed
 
-
-
-
-
-                                .anyRequest().authenticated()
-                );
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // Encoder for password hashing
     }
 }

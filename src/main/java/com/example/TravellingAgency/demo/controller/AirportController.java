@@ -18,14 +18,24 @@ public class AirportController {
 
     @GetMapping
     public List<Airport> getAllAirports() {
-        return airportService.findAll();
+        List<Airport> airports = airportService.findAll();
+        airports.forEach(airport -> {
+            airport.getCity().getName();  // Ensure lazy loading
+            airport.getCity().getCountry().getName();  // Ensure lazy loading
+            airport.getCity().getCountry().getContinent().getName();  // Ensure lazy loading
+        });
+        return airports;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Airport> getAirportById(@PathVariable Long id) {
         Optional<Airport> airport = airportService.findById(id);
         if (airport.isPresent()) {
-            return ResponseEntity.ok(airport.get());
+            Airport foundAirport = airport.get();
+            foundAirport.getCity().getName();  // Ensure lazy loading
+            foundAirport.getCity().getCountry().getName();  // Ensure lazy loading
+            foundAirport.getCity().getCountry().getContinent().getName();  // Ensure lazy loading
+            return ResponseEntity.ok(foundAirport);
         } else {
             return ResponseEntity.notFound().build();
         }
